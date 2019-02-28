@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p class='lead'>Welcome Home</p>
+User List :
+{% for u in users %}
+    <ul>{{u.username}}</ul>
+{% endfor %}
+{% endblock %}
