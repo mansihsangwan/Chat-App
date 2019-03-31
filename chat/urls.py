@@ -5,7 +5,10 @@ from .views import ThreadView, InboxView
 
 app_name = 'chat'
 urlpatterns = [
-    path("", InboxView.as_view()),
+    path("", InboxView.as_view(), name='inbox'),
     re_path(r"^(?P<username>[\w.@+-]+)/$", ThreadView.as_view(),name = "chatur1"),
-    path('home',views.profile, name = 'profile')
+    path('profile',views.profile, name = 'profile'),
+    path('register',views.register,name='register'),
+    path('user_login',views.user_login,name='user_login'),
+    path('user_logout',views.user_logout,name='user_logout'),
 ]

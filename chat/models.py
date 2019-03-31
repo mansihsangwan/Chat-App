@@ -1,10 +1,10 @@
 from django.db import models
-
 from django.conf import settings
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth import get_user_model
-
+from django.contrib.sessions.models import Session
+from django.contrib.auth.signals import user_logged_in
 
 class ThreadManager(models.Manager):
     def by_user(self, user):
@@ -62,3 +62,9 @@ class ChatMessage(models.Model):
     message     = models.TextField()
     thumb = models.FileField(upload_to='documents/%Y/%m/%d',blank=True , null= True)
 timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class Status(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='sender',related_name="logged_in_user", on_delete=models.CASCADE)
+    #online = models.IntegerField(default = 0, null=True, blank= True)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE ,null=True, blank= True )    

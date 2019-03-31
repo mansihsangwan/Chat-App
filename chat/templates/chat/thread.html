@@ -1,6 +1,9 @@
-{% extends "base.html" %}
+{% extends 'base1.html' %}
+{% block body_block %}
 
-{% block content %}
+  <div class="container">
+    <div class="jumbotron">
+        
 <h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 <ul id='chat-items'>
 {% for chat in object.chatmessage_set.all %}

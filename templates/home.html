@@ -1,10 +1,26 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 
 {% block content %}
 
-<p class='lead'>Welcome Home</p>
+<p>Welcome Home</p>
 User List :
 {% for u in users %}
-    <ul>{{u.username}}</ul>
+<ul>
+    {% if user.id != session.uid %}
+        <li><a href="/messages/{{u.username}}">{{u.username}}</a>
+            {% if user.online != "0" %}
+                <span style="height: 12px;width: 12px;background-color: #1fc124;border-radius: 6px;
+                float: right;margin-top: 5px;"></span>
+            {% else %}
+                <span style="height: 12px;width: 12px;background-color: #8a8a8a;border-radius: 6px;
+                float: right;margin-top: 5px;"></span>
+            {% endif %}
+        </li>
+    {% endif %}
+
+</ul>
 {% endfor %}
+
+
+    
 {% endblock %}

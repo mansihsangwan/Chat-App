@@ -1,7 +1,7 @@
 from django import forms
 from .models import ChatMessage
 from chat.models import *
-
+from django.contrib.auth.models import User
 
 class ComposeForm(forms.Form):
     message = forms.CharField(
@@ -19,3 +19,11 @@ class UserListForm(forms.ModelForm):
     class Meta:
         model = ChatMessage
         fields=["user"]
+
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta():
+        model = User
+        fields = ('username','password','email')
